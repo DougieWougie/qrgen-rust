@@ -17,11 +17,31 @@ A fast, efficient command-line tool for generating QR codes from text, URLs, or 
 
 ## Installation
 
-### Prerequisites
+### From Pre-built Binaries (Recommended)
+
+Download the latest release for your platform:
+- [Releases Page](https://github.com/DougieWougie/qrgen-rust/releases)
+
+Available for:
+- Linux (x86_64, ARM64)
+- macOS (Intel, Apple Silicon)
+- Windows (x86_64)
+
+```bash
+# Linux/macOS example
+wget https://github.com/DougieWougie/qrgen-rust/releases/download/v0.1.0/qrgen-0.1.0-linux-x86_64.tar.gz
+tar -xzf qrgen-0.1.0-linux-x86_64.tar.gz
+chmod +x qrgen
+sudo mv qrgen /usr/local/bin/
+```
+
+### Build from Source
+
+#### Prerequisites
 
 - Rust toolchain (install from [rustup.rs](https://rustup.rs/))
 
-### Build from source
+#### Build
 
 ```bash
 # Clone or navigate to the repository
