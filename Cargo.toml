@@ -1,0 +1,20 @@
+[package]
+name = "qrgen"
+version = "0.1.0"
+edition = "2021"
+authors = ["Dougie Richardson"]
+description = "A simple command-line tool for generating QR codes"
+license = "MIT"
+
+[[bin]]
+name = "qrgen"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+qrcode = { version = "0.14", default-features = false, features = ["svg"] }
+image = { version = "0.25", features = ["png"] }
+anyhow = "1.0"
+
+[dev-dependencies]
+tempfile = "3.8"
