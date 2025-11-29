@@ -29,11 +29,7 @@ fn test_qr_generation_with_url() {
     let temp_dir = TempDir::new().unwrap();
     let output_path = temp_dir.path().join("url_qr.png");
 
-    let output = run_qrgen(&[
-        "https://example.com",
-        "-o",
-        output_path.to_str().unwrap(),
-    ]);
+    let output = run_qrgen(&["https://example.com", "-o", output_path.to_str().unwrap()]);
 
     assert!(output.status.success());
     assert!(output_path.exists());
@@ -44,13 +40,7 @@ fn test_custom_size() {
     let temp_dir = TempDir::new().unwrap();
     let output_path = temp_dir.path().join("large_qr.png");
 
-    let output = run_qrgen(&[
-        "test",
-        "-o",
-        output_path.to_str().unwrap(),
-        "--size",
-        "20",
-    ]);
+    let output = run_qrgen(&["test", "-o", output_path.to_str().unwrap(), "--size", "20"]);
 
     assert!(output.status.success());
     assert!(output_path.exists());
@@ -307,11 +297,7 @@ fn test_special_characters() {
     let temp_dir = TempDir::new().unwrap();
     let output_path = temp_dir.path().join("special_qr.png");
 
-    let output = run_qrgen(&[
-        "Hello! @#$%^&*()",
-        "-o",
-        output_path.to_str().unwrap(),
-    ]);
+    let output = run_qrgen(&["Hello! @#$%^&*()", "-o", output_path.to_str().unwrap()]);
 
     assert!(output.status.success());
     assert!(output_path.exists());
@@ -322,12 +308,7 @@ fn test_terminal_and_file_output() {
     let temp_dir = TempDir::new().unwrap();
     let output_path = temp_dir.path().join("both_qr.png");
 
-    let output = run_qrgen(&[
-        "test",
-        "-o",
-        output_path.to_str().unwrap(),
-        "--terminal",
-    ]);
+    let output = run_qrgen(&["test", "-o", output_path.to_str().unwrap(), "--terminal"]);
 
     assert!(output.status.success());
     assert!(output_path.exists());

@@ -16,7 +16,11 @@ fn wifi_template(data: &str) -> Result<String> {
     let parts: Vec<&str> = data.split(',').collect();
 
     let (ssid, password, encryption) = if parts.len() == 3 {
-        (parts[0].to_string(), parts[1].to_string(), parts[2].to_uppercase())
+        (
+            parts[0].to_string(),
+            parts[1].to_string(),
+            parts[2].to_uppercase(),
+        )
     } else {
         println!("WiFi QR Code Generator");
         print!("Network SSID: ");
@@ -40,7 +44,11 @@ fn wifi_template(data: &str) -> Result<String> {
             "WPA".to_string()
         };
 
-        (ssid.trim().to_string(), password.trim().to_string(), encryption)
+        (
+            ssid.trim().to_string(),
+            password.trim().to_string(),
+            encryption,
+        )
     };
 
     Ok(format!("WIFI:T:{};S:{};P:{};;", encryption, ssid, password))
@@ -52,8 +60,16 @@ fn vcard_template(data: &str) -> Result<String> {
     let (name, phone, email, org) = if parts.len() >= 2 {
         let name = parts[0].to_string();
         let phone = parts[1].to_string();
-        let email = if parts.len() > 2 { parts[2].to_string() } else { String::new() };
-        let org = if parts.len() > 3 { parts[3].to_string() } else { String::new() };
+        let email = if parts.len() > 2 {
+            parts[2].to_string()
+        } else {
+            String::new()
+        };
+        let org = if parts.len() > 3 {
+            parts[3].to_string()
+        } else {
+            String::new()
+        };
         (name, phone, email, org)
     } else {
         println!("vCard QR Code Generator");
@@ -77,7 +93,12 @@ fn vcard_template(data: &str) -> Result<String> {
         let mut org = String::new();
         io::stdin().read_line(&mut org)?;
 
-        (name.trim().to_string(), phone.trim().to_string(), email.trim().to_string(), org.trim().to_string())
+        (
+            name.trim().to_string(),
+            phone.trim().to_string(),
+            email.trim().to_string(),
+            org.trim().to_string(),
+        )
     };
 
     let mut vcard = format!("BEGIN:VCARD\nVERSION:3.0\nFN:{}\n", name);
@@ -106,7 +127,7 @@ fn sms_template(data: &str) -> String {
 
 fn email_template(data: &str) -> String {
     let parts: Vec<&str> = data.splitn(3, ',').collect();
-    let email = parts.get(0).unwrap_or(&"");
+    let email = parts.first().unwrap_or(&"");
     let subject = parts.get(1).unwrap_or(&"");
     let body = parts.get(2).unwrap_or(&"");
 
@@ -197,7 +218,10 @@ mod tests {
     #[test]
     fn test_email_template_full() {
         let result = email_template("contact@example.com,Subject Line,Email body text");
-        assert_eq!(result, "mailto:contact@example.com?subject=Subject Line&body=Email body text");
+        assert_eq!(
+            result,
+            "mailto:contact@example.com?subject=Subject Line&body=Email body text"
+        );
     }
 
     #[test]

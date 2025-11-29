@@ -1,8 +1,8 @@
 use anyhow::{Context, Result};
 use clap::Parser;
 use image::{Rgba, RgbaImage};
-use qrcode::{QrCode, Color};
 use qrcode::EcLevel;
+use qrcode::{Color, QrCode};
 use std::path::PathBuf;
 
 mod templates;
@@ -383,7 +383,8 @@ mod tests {
             4,
             Rgba([0, 0, 0, 255]),
             Rgba([255, 255, 255, 255]),
-        ).unwrap();
+        )
+        .unwrap();
 
         // Larger size should produce larger image
         let img_small = create_qr_code(
@@ -393,7 +394,8 @@ mod tests {
             4,
             Rgba([0, 0, 0, 255]),
             Rgba([255, 255, 255, 255]),
-        ).unwrap();
+        )
+        .unwrap();
 
         assert!(img.width() > img_small.width());
     }
@@ -407,7 +409,8 @@ mod tests {
             10,
             Rgba([0, 0, 0, 255]),
             Rgba([255, 255, 255, 255]),
-        ).unwrap();
+        )
+        .unwrap();
 
         let img_small_border = create_qr_code(
             "test",
@@ -416,7 +419,8 @@ mod tests {
             4,
             Rgba([0, 0, 0, 255]),
             Rgba([255, 255, 255, 255]),
-        ).unwrap();
+        )
+        .unwrap();
 
         assert!(img.width() > img_small_border.width());
     }
@@ -443,8 +447,8 @@ mod tests {
             EcLevel::M,
             10,
             4,
-            Rgba([0, 0, 255, 255]),     // Blue
-            Rgba([255, 255, 0, 255]),   // Yellow
+            Rgba([0, 0, 255, 255]),   // Blue
+            Rgba([255, 255, 0, 255]), // Yellow
         );
         assert!(img.is_ok());
     }
