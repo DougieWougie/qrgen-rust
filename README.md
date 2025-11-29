@@ -1,6 +1,6 @@
 # QRGen - QR Code Generator CLI (Rust Version)
 
-[![CI](https://github.com/YOUR_USERNAME/qrgen-rust/workflows/CI/badge.svg)](https://github.com/YOUR_USERNAME/qrgen-rust/actions)
+[![CI](https://github.com/DougieWougie/qrgen-rust/workflows/CI/badge.svg)](https://github.com/DougieWougie/qrgen-rust/actions)
 
 A fast, efficient command-line tool for generating QR codes from text, URLs, or any data, written in Rust.
 
